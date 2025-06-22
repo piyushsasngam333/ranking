@@ -14,6 +14,21 @@ export interface PodiumLeaderboardProps {
 
 const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = React.memo(
   ({ traders }) => {
+    // Validate that we have exactly 3 traders
+    if (!traders || traders.length !== 3) {
+      console.warn(
+        "PodiumLeaderboard: Expected exactly 3 traders, received:",
+        traders?.length || 0,
+      );
+      return (
+        <div className="relative w-full max-w-6xl mx-auto px-4 py-16 text-center">
+          <div className="text-white/60">
+            <p>Leaderboard requires exactly 3 traders</p>
+          </div>
+        </div>
+      );
+    }
+
     // Sort traders by rank to ensure correct positioning
     const sortedTraders = [...traders].sort((a, b) => a.rank - b.rank);
     const [first, second, third] = sortedTraders;
