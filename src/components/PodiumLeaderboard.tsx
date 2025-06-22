@@ -148,11 +148,33 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
           </div>
 
           {/* Laurel decoration */}
-          <div className="absolute -top-3 -left-3 text-yellow-400 opacity-80">
-            <LaurelIcon className="w-8 h-8 transform -rotate-12" />
+          <div
+            className={`absolute -top-4 -left-6 ${
+              trader.rank === 1
+                ? "text-yellow-400"
+                : trader.rank === 2
+                  ? "text-gray-300"
+                  : "text-orange-400"
+            } opacity-60`}
+          >
+            <LaurelIcon
+              className="w-11 h-16 transform -rotate-15"
+              side="left"
+            />
           </div>
-          <div className="absolute -top-3 -right-3 text-yellow-400 opacity-80">
-            <LaurelIcon className="w-8 h-8 transform rotate-12 scale-x-[-1]" />
+          <div
+            className={`absolute -top-4 -right-6 ${
+              trader.rank === 1
+                ? "text-yellow-400"
+                : trader.rank === 2
+                  ? "text-gray-300"
+                  : "text-orange-400"
+            } opacity-60`}
+          >
+            <LaurelIcon
+              className="w-11 h-16 transform rotate-15"
+              side="right"
+            />
           </div>
 
           {/* Rank badge */}
