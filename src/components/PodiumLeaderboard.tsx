@@ -248,7 +248,7 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
           <div
             className={`relative ${getPodiumHeight(
               trader.rank,
-            )} w-48 bg-gradient-to-b from-gray-800/90 to-black/95 backdrop-blur-sm border border-white/5 ${
+            )} w-36 sm:w-44 lg:w-48 bg-gradient-to-b from-gray-800/90 to-black/95 backdrop-blur-sm border border-white/5 ${
               isCenter ? "rounded-t-3xl" : "rounded-t-2xl"
             } ${getRankGlowColor(trader.rank)} transition-all duration-300 hover:scale-[1.02] overflow-hidden`}
             style={{
