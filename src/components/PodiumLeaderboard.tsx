@@ -308,12 +308,34 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
   };
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto px-4 py-12">
-      {/* Background blur effect */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/5 to-cyan-500/10 blur-3xl rounded-3xl" />
+    <div className="relative w-full max-w-6xl mx-auto px-4 py-16">
+      {/* Background decorative image */}
+      <div
+        className="absolute inset-0 opacity-30"
+        style={{
+          backgroundImage: `url('${traders[0].avatarUrl}')`,
+          backgroundSize: "400px 200px",
+          backgroundPosition: "center 20%",
+          backgroundRepeat: "no-repeat",
+          filter: "blur(40px) brightness(0.3)",
+          transform: "scale(2)",
+        }}
+      />
+
+      {/* Animated background glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-blue-500/10 to-purple-500/5 blur-3xl rounded-3xl animate-pulse" />
+
+      {/* Large blue glow effect at bottom */}
+      <div
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-[900px] h-72 opacity-30 blur-[75px]"
+        style={{
+          background:
+            "radial-gradient(ellipse, #50D5FF 0%, rgba(80, 213, 255, 0.2) 40%, transparent 70%)",
+        }}
+      />
 
       {/* Main podium container */}
-      <div className="relative flex items-end justify-center gap-8 lg:gap-12">
+      <div className="relative flex items-end justify-center gap-6 lg:gap-12">
         {/* Third place (left) */}
         <PodiumBox trader={third} position="left" />
 
@@ -324,8 +346,15 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
         <PodiumBox trader={second} position="right" />
       </div>
 
-      {/* Additional glow at bottom */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-96 h-32 bg-gradient-radial from-cyan-500/20 via-blue-500/10 to-transparent blur-2xl" />
+      {/* Subtle overlay pattern */}
+      <div
+        className="absolute inset-0 opacity-5 pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle at 25% 25%, white 1px, transparent 1px),
+                           radial-gradient(circle at 75% 75%, white 1px, transparent 1px)`,
+          backgroundSize: "50px 50px",
+        }}
+      />
     </div>
   );
 };
