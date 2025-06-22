@@ -12,7 +12,7 @@ export interface PodiumLeaderboardProps {
   traders: [TraderData, TraderData, TraderData];
 }
 
-const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
+const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = React.memo(({ traders }) => {
   // Sort traders by rank to ensure correct positioning
   const sortedTraders = [...traders].sort((a, b) => a.rank - b.rank);
   const [first, second, third] = sortedTraders;
@@ -73,10 +73,10 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
     return `$ ${profit.toLocaleString()}`;
   };
 
-  const LaurelIcon: React.FC<{
-    className?: string;
-    side?: "left" | "right";
-  }> = ({ className = "", side = "left" }) => (
+  const LaurelIcon: React.FC<{ className?: string; side?: "left" | "right" }> = ({
+    className = "",
+    side = "left"
+  }) => (
     <svg
       className={className}
       width="44"
@@ -86,10 +86,9 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d={
-          side === "left"
-            ? "M10.7722 37.3668C12.4519 36.9697 14.6979 36.8205 16.908 37.6675C18.5859 38.2735 19.8847 39.4415 21.1213 40.4986C21.1213 40.4986 20.74 40.0425 20.3193 39.2627C19.8685 38.4908 19.2702 37.4716 18.6869 36.4484C18.0885 35.4291 17.5052 34.4059 17.0584 33.6489C16.6978 32.8532 16.4547 32.3128 16.4547 32.3128C15.2861 32.8133 12.2378 33.923 9.21707 32.2243C8.27966 31.6769 7.38006 30.9125 6.6787 30.0478C6.03342 29.1524 5.49221 28.1658 5.05833 27.2781C4.23161 25.4758 3.82906 23.9909 3.82906 23.9909"
-            : "M51.1477 37.3668C49.4681 36.9697 47.2221 36.8205 45.0119 37.6675C43.334 38.2735 42.0352 39.4415 40.7986 40.4986C40.7986 40.4986 41.1799 40.0425 41.6006 39.2627C42.0514 38.4908 42.6497 37.4716 43.2331 36.4484C43.8314 35.4291 44.4147 34.4059 44.8615 33.6489C45.2221 32.8532 45.4652 32.3128 45.4652 32.3128C46.6338 32.8133 49.6822 33.923 52.7028 32.2243C53.6403 31.6769 54.5399 30.9125 55.2412 30.0478"
+        d={side === "left"
+          ? "M10.7722 37.3668C12.4519 36.9697 14.6979 36.8205 16.908 37.6675C18.5859 38.2735 19.8847 39.4415 21.1213 40.4986C21.1213 40.4986 20.74 40.0425 20.3193 39.2627C19.8685 38.4908 19.2702 37.4716 18.6869 36.4484C18.0885 35.4291 17.5052 34.4059 17.0584 33.6489C16.6978 32.8532 16.4547 32.3128 16.4547 32.3128C15.2861 32.8133 12.2378 33.923 9.21707 32.2243C8.27966 31.6769 7.38006 30.9125 6.6787 30.0478C6.03342 29.1524 5.49221 28.1658 5.05833 27.2781C4.23161 25.4758 3.82906 23.9909 3.82906 23.9909"
+          : "M51.1477 37.3668C49.4681 36.9697 47.2221 36.8205 45.0119 37.6675C43.334 38.2735 42.0352 39.4415 40.7986 40.4986C40.7986 40.4986 41.1799 40.0425 41.6006 39.2627C42.0514 38.4908 42.6497 37.4716 43.2331 36.4484C43.8314 35.4291 44.4147 34.4059 44.8615 33.6489C45.2221 32.8532 45.4652 32.3128 45.4652 32.3128C46.6338 32.8133 49.6822 33.923 52.7028 32.2243C53.6403 31.6769 54.5399 30.9125 55.2412 30.0478"
         }
         fill="url(#paint0_linear)"
         fillOpacity="0.8"
@@ -144,19 +143,13 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
             )} p-1 ${getRankGlowColor(trader.rank)}`}
             style={{
               background: `conic-gradient(from 0deg,
-                ${
-                  trader.rank === 1
-                    ? "#facc15, #eab308, #facc15"
-                    : trader.rank === 2
-                      ? "#d1d5db, #9ca3af, #d1d5db"
-                      : "#fb923c, #f97316, #fb923c"
-                })`,
+                ${trader.rank === 1 ? '#facc15, #eab308, #facc15' :
+                  trader.rank === 2 ? '#d1d5db, #9ca3af, #d1d5db' :
+                  '#fb923c, #f97316, #fb923c'})`,
               boxShadow: `0 0 20px ${
-                trader.rank === 1
-                  ? "rgba(250,204,21,0.4)"
-                  : trader.rank === 2
-                    ? "rgba(209,213,219,0.4)"
-                    : "rgba(251,146,60,0.4)"
+                trader.rank === 1 ? 'rgba(250,204,21,0.4)' :
+                trader.rank === 2 ? 'rgba(209,213,219,0.4)' :
+                'rgba(251,146,60,0.4)'
               }`,
             }}
           >
@@ -171,33 +164,19 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
           </div>
 
           {/* Laurel decoration */}
-          <div
-            className={`absolute -top-4 -left-6 ${
-              trader.rank === 1
-                ? "text-yellow-400"
-                : trader.rank === 2
-                  ? "text-gray-300"
-                  : "text-orange-400"
-            } opacity-60`}
-          >
-            <LaurelIcon
-              className="w-11 h-16 transform -rotate-15"
-              side="left"
-            />
+          <div className={`absolute -top-4 -left-6 ${
+            trader.rank === 1 ? "text-yellow-400" :
+            trader.rank === 2 ? "text-gray-300" :
+            "text-orange-400"
+          } opacity-60`}>
+            <LaurelIcon className="w-11 h-16 transform -rotate-15" side="left" />
           </div>
-          <div
-            className={`absolute -top-4 -right-6 ${
-              trader.rank === 1
-                ? "text-yellow-400"
-                : trader.rank === 2
-                  ? "text-gray-300"
-                  : "text-orange-400"
-            } opacity-60`}
-          >
-            <LaurelIcon
-              className="w-11 h-16 transform rotate-15"
-              side="right"
-            />
+          <div className={`absolute -top-4 -right-6 ${
+            trader.rank === 1 ? "text-yellow-400" :
+            trader.rank === 2 ? "text-gray-300" :
+            "text-orange-400"
+          } opacity-60`}>
+            <LaurelIcon className="w-11 h-16 transform rotate-15" side="right" />
           </div>
 
           {/* Rank badge */}
@@ -207,11 +186,9 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
             )} flex items-center justify-center text-white font-bold text-base shadow-2xl border-2 border-white/20`}
             style={{
               boxShadow: `0 4px 12px ${
-                trader.rank === 1
-                  ? "rgba(250,204,21,0.5)"
-                  : trader.rank === 2
-                    ? "rgba(209,213,219,0.5)"
-                    : "rgba(251,146,60,0.5)"
+                trader.rank === 1 ? 'rgba(250,204,21,0.5)' :
+                trader.rank === 2 ? 'rgba(209,213,219,0.5)' :
+                'rgba(251,146,60,0.5)'
               }, inset 0 1px 0 rgba(255,255,255,0.3)`,
             }}
           >
@@ -314,11 +291,11 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
         className="absolute inset-0 opacity-30"
         style={{
           backgroundImage: `url('${traders[0].avatarUrl}')`,
-          backgroundSize: "400px 200px",
-          backgroundPosition: "center 20%",
-          backgroundRepeat: "no-repeat",
-          filter: "blur(40px) brightness(0.3)",
-          transform: "scale(2)",
+          backgroundSize: '400px 200px',
+          backgroundPosition: 'center 20%',
+          backgroundRepeat: 'no-repeat',
+          filter: 'blur(40px) brightness(0.3)',
+          transform: 'scale(2)',
         }}
       />
 
@@ -329,8 +306,7 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
       <div
         className="absolute bottom-10 left-1/2 transform -translate-x-1/2 w-[900px] h-72 opacity-30 blur-[75px]"
         style={{
-          background:
-            "radial-gradient(ellipse, #50D5FF 0%, rgba(80, 213, 255, 0.2) 40%, transparent 70%)",
+          background: 'radial-gradient(ellipse, #50D5FF 0%, rgba(80, 213, 255, 0.2) 40%, transparent 70%)',
         }}
       />
 
@@ -357,7 +333,7 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
         style={{
           backgroundImage: `radial-gradient(circle at 25% 25%, white 1px, transparent 1px),
                            radial-gradient(circle at 75% 75%, white 1px, transparent 1px)`,
-          backgroundSize: "50px 50px",
+          backgroundSize: '50px 50px',
         }}
       />
     </div>
