@@ -331,14 +331,14 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = React.memo(
       <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
         {/* Background decorative image */}
         <div
-          className="absolute inset-0 opacity-30"
+          className="absolute inset-0 opacity-20 pointer-events-none"
           style={{
-            backgroundImage: `url('${traders[0].avatarUrl}')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop')`,
             backgroundSize: "400px 200px",
             backgroundPosition: "center 20%",
             backgroundRepeat: "no-repeat",
-            filter: "blur(40px) brightness(0.3)",
-            transform: "scale(2)",
+            filter: "blur(60px) brightness(0.2)",
+            transform: "scale(1.5)",
           }}
         />
 
