@@ -335,15 +335,20 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
       />
 
       {/* Main podium container */}
-      <div className="relative flex items-end justify-center gap-6 lg:gap-12">
-        {/* Third place (left) */}
-        <PodiumBox trader={third} position="left" />
+      <div className="relative flex flex-col sm:flex-row items-end justify-center gap-4 sm:gap-6 lg:gap-12">
+        {/* Mobile: Stack vertically in rank order */}
+        <div className="block sm:hidden space-y-8">
+          <PodiumBox trader={first} position="center" />
+          <PodiumBox trader={second} position="right" />
+          <PodiumBox trader={third} position="left" />
+        </div>
 
-        {/* First place (center) */}
-        <PodiumBox trader={first} position="center" />
-
-        {/* Second place (right) */}
-        <PodiumBox trader={second} position="right" />
+        {/* Desktop: Show in podium layout */}
+        <div className="hidden sm:contents">
+          <PodiumBox trader={third} position="left" />
+          <PodiumBox trader={first} position="center" />
+          <PodiumBox trader={second} position="right" />
+        </div>
       </div>
 
       {/* Subtle overlay pattern */}
