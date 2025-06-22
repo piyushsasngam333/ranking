@@ -202,9 +202,18 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
 
           {/* Rank badge */}
           <div
-            className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-r ${getRankColor(
+            className={`absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-10 h-10 rounded-full bg-gradient-to-br ${getRankColor(
               trader.rank,
-            )} flex items-center justify-center text-white font-bold text-sm shadow-lg`}
+            )} flex items-center justify-center text-white font-bold text-base shadow-2xl border-2 border-white/20`}
+            style={{
+              boxShadow: `0 4px 12px ${
+                trader.rank === 1
+                  ? "rgba(250,204,21,0.5)"
+                  : trader.rank === 2
+                    ? "rgba(209,213,219,0.5)"
+                    : "rgba(251,146,60,0.5)"
+              }, inset 0 1px 0 rgba(255,255,255,0.3)`,
+            }}
           >
             {trader.rank}
           </div>
