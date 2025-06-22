@@ -1,4 +1,4 @@
-import PodiumLeaderboard, { TraderData } from "@/components/PodiumLeaderboard";
+import { PodiumLeaderboard, TraderData } from "@/components";
 
 const Index = () => {
   // Sample data matching the Figma design
