@@ -131,18 +131,41 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
         />
 
         {/* Avatar section */}
-        <div className="relative mb-6 z-30">
-          {/* Avatar container with glow */}
+        <div className="relative mb-8 z-30">
+          {/* Outer glow ring */}
           <div
-            className={`relative p-1 rounded-full bg-gradient-to-r ${getRankColor(
+            className={`absolute inset-0 rounded-full bg-gradient-to-r ${getRankColor(trader.rank)} opacity-40 blur-md scale-110`}
+          />
+
+          {/* Avatar container with border */}
+          <div
+            className={`relative w-28 h-28 rounded-full bg-gradient-to-r ${getRankColor(
               trader.rank,
-            )} ${getRankGlowColor(trader.rank)}`}
+            )} p-1 ${getRankGlowColor(trader.rank)}`}
+            style={{
+              background: `conic-gradient(from 0deg,
+                ${
+                  trader.rank === 1
+                    ? "#facc15, #eab308, #facc15"
+                    : trader.rank === 2
+                      ? "#d1d5db, #9ca3af, #d1d5db"
+                      : "#fb923c, #f97316, #fb923c"
+                })`,
+              boxShadow: `0 0 20px ${
+                trader.rank === 1
+                  ? "rgba(250,204,21,0.4)"
+                  : trader.rank === 2
+                    ? "rgba(209,213,219,0.4)"
+                    : "rgba(251,146,60,0.4)"
+              }`,
+            }}
           >
-            <div className="w-24 h-24 rounded-full bg-gray-900 p-1">
+            {/* Inner shadow container */}
+            <div className="w-full h-full rounded-full bg-gradient-to-b from-gray-800 to-gray-900 p-1">
               <img
                 src={trader.avatarUrl || "/placeholder.svg"}
                 alt={trader.name}
-                className="w-full h-full rounded-full object-cover"
+                className="w-full h-full rounded-full object-cover border-2 border-gray-700/50"
               />
             </div>
           </div>
