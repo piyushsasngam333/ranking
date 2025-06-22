@@ -180,8 +180,12 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = React.memo(
               <div className="w-full h-full rounded-full bg-gradient-to-b from-gray-800 to-gray-900 p-1">
                 <img
                   src={trader.avatarUrl || "/placeholder.svg"}
-                  alt={trader.name}
+                  alt={`${trader.name} avatar`}
                   className="w-full h-full rounded-full object-cover border-2 border-gray-700/50"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = "/placeholder.svg";
+                  }}
                 />
               </div>
             </div>
