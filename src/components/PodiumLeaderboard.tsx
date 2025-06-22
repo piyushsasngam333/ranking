@@ -220,12 +220,12 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
         </div>
 
         {/* Trader info */}
-        <div className="text-center mb-4 z-30 relative">
-          <h3 className="text-xl font-medium text-white/90 mb-2 tracking-tight">
+        <div className="text-center mb-4 z-30 relative px-2">
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-white/90 mb-2 tracking-tight">
             {trader.name}
           </h3>
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-lg text-white/80 font-normal">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+            <span className="text-base sm:text-lg lg:text-xl text-white/80 font-normal">
               {formatProfit(trader.profit)}
             </span>
             <div
