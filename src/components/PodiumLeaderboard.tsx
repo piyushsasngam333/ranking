@@ -210,36 +210,65 @@ const PodiumLeaderboard: React.FC<PodiumLeaderboardProps> = ({ traders }) => {
           </div>
         </div>
 
-        {/* Podium base */}
-        <div
-          className={`relative ${getPodiumHeight(
-            trader.rank,
-          )} w-48 bg-gradient-to-b from-gray-800/80 to-gray-900/90 backdrop-blur-sm border border-white/10 ${
-            isCenter ? "rounded-t-2xl" : "rounded-t-xl"
-          } ${getRankGlowColor(trader.rank)} transition-all duration-300 hover:scale-[1.02]`}
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05))",
-            backdropFilter: "blur(10px)",
-            borderImage: `linear-gradient(135deg, ${
-              trader.rank === 1
-                ? "rgba(250,204,21,0.3)"
-                : trader.rank === 2
-                  ? "rgba(209,213,219,0.3)"
-                  : "rgba(251,146,60,0.3)"
-            }, transparent) 1`,
-          }}
-        >
-          {/* Podium side panels for 3D effect */}
+        {/* Podium base with 3D geometric design */}
+        <div className="relative">
+          {/* Main podium face */}
           <div
-            className={`absolute top-0 -right-4 ${getPodiumHeight(
+            className={`relative ${getPodiumHeight(
               trader.rank,
-            )} w-4 bg-gradient-to-b from-gray-700/60 to-gray-800/80 transform skew-y-2 ${
-              isCenter ? "rounded-tr-2xl" : "rounded-tr-xl"
-            }`}
-          />
+            )} w-48 bg-gradient-to-b from-gray-800/90 to-black/95 backdrop-blur-sm border border-white/5 ${
+              isCenter ? "rounded-t-3xl" : "rounded-t-2xl"
+            } ${getRankGlowColor(trader.rank)} transition-all duration-300 hover:scale-[1.02] overflow-hidden`}
+            style={{
+              background: `linear-gradient(135deg,
+                rgba(0,0,0,0.8) 0%,
+                rgba(31,41,55,0.6) 50%,
+                rgba(0,0,0,0.9) 100%)`,
+              backdropFilter: "blur(15px)",
+              boxShadow: `inset 0 1px 0 rgba(255,255,255,0.1),
+                         inset 0 -1px 0 rgba(0,0,0,0.3),
+                         0 20px 40px rgba(0,0,0,0.4)`,
+            }}
+          >
+            {/* Inner glow effect */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-t ${getRankColor(trader.rank)} opacity-5`}
+            />
+
+            {/* Geometric patterns */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-4 left-4 right-4 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+            </div>
+          </div>
+
+          {/* Right side panel for 3D effect */}
           <div
-            className={`absolute bottom-0 -right-4 w-4 h-8 bg-gradient-to-b from-gray-800/80 to-gray-900/90 transform skew-y-2`}
+            className={`absolute top-0 -right-6 ${getPodiumHeight(
+              trader.rank,
+            )} w-6 bg-gradient-to-b from-gray-700/40 to-black/60 transform skew-y-6 origin-top-left ${
+              isCenter ? "rounded-tr-3xl" : "rounded-tr-2xl"
+            }`}
+            style={{
+              boxShadow: "inset -2px 0 4px rgba(0,0,0,0.3)",
+            }}
+          />
+
+          {/* Bottom edge for depth */}
+          <div
+            className="absolute -bottom-1 -right-6 w-6 h-6 bg-gradient-to-br from-gray-800/60 to-black/80 transform skew-y-6 skew-x-12"
+            style={{
+              clipPath: "polygon(0 0, 100% 0, 80% 100%, 0 100%)",
+            }}
+          />
+
+          {/* Left side subtle shadow */}
+          <div
+            className={`absolute top-0 -left-1 ${getPodiumHeight(
+              trader.rank,
+            )} w-1 bg-gradient-to-b from-black/20 to-black/40 ${
+              isCenter ? "rounded-tl-3xl" : "rounded-tl-2xl"
+            }`}
           />
         </div>
       </div>
